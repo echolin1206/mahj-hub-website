@@ -1,0 +1,216 @@
+// Bilingual strings (English / 中文)
+export type Lang = 'en' | 'zh';
+
+const dict = {
+  en: {
+    title: 'JYB Mahjong',
+    subtitle: 'American Mahjong Online — NMJL 2025 Card',
+    navPlay: 'Play',
+    navCard: '2025 Card',
+    navRules: 'Rules AI',
+    navShop: 'Shop',
+    newGame: 'New Game',
+    langBtn: '中文',
+
+    // table
+    you: 'You',
+    east: 'East',
+    wallLeft: 'Wall',
+    yourTurnPick: 'Your turn — tap Pick',
+    yourTurnDiscard: 'Your turn — tap a tile to discard',
+    pick: 'Pick',
+    discard: 'Discard',
+    mahjong: 'Mah Jongg!',
+    pung: 'Pung',
+    kong: 'Kong',
+    quint: 'Quint',
+    pass: 'Pass',
+    callPrompt: 'Call the discard?',
+    selfPickAvailable: 'You can declare Mah Jongg!',
+    swapJokerHint: 'Tap a joker in an exposure to swap',
+
+    // charleston
+    charleston: 'Charleston',
+    charlestonPass: 'Pass 3 tiles',
+    dirR: 'to the right',
+    dirA: 'across',
+    dirL: 'to the left',
+    selectTiles: 'Select {n} tiles',
+    confirmPass: 'Confirm Pass',
+    blindPass: 'Blind pass',
+    secondCharlestonQ: 'Second Charleston?',
+    voteYes: 'Yes, continue',
+    voteNo: 'No, stop',
+    waiting: 'Waiting for others…',
+    courtesy: 'Courtesy Pass',
+    courtesyHint: 'Exchange 0–3 tiles with the player across',
+
+    // results
+    winTitle: 'Mah Jongg!',
+    wallGame: 'Wall Game — no winner',
+    selfPick: 'Self-picked',
+    discardWin: 'Won on discard',
+    jokerless: 'Jokerless hand — double!',
+    handLabel: 'Winning hand',
+    value: 'Value',
+    score: 'Score',
+    nextGame: 'Next Game',
+
+    // log
+    logStart: 'Game started. {seat} is East.',
+    logPass: 'Charleston pass {dir}',
+    logSecond: 'Second Charleston begins',
+    logCourtesy: 'Courtesy pass done',
+    logTurn: '{seat} to play',
+    logPick: '{seat} picks',
+    logDiscard: '{seat} discards {tile}',
+    logPung: '{seat} calls Pung on {tile}',
+    logKong: '{seat} calls Kong on {tile}',
+    logQuint: '{seat} calls Quint on {tile}',
+    logMahjong: '{seat} declares Mah Jongg with {tile} ({hand})!',
+    logMahjongSelf: '{seat} self-picks Mah Jongg ({hand})!',
+    logSwap: '{seat} swaps a joker for {tile}',
+    logWall: 'Wall exhausted — wall game',
+
+    // card page
+    cardTitle: 'NMJL 2025 Card',
+    cardHint: 'Every legal winning hand this year. X = exposed OK, C = concealed only. Number = point value.',
+    concealed: 'C',
+    exposed: 'X',
+
+    // rules chat
+    rulesTitle: 'Ask the Rules AI',
+    rulesHint: 'American mahjong rules, the 2025 card, strategy — ask anything.',
+    rulesPlaceholder: 'e.g. Can I use a joker in a pair?',
+    send: 'Send',
+    thinking: 'Thinking…',
+    rulesOffline: 'The AI service is not configured yet. Meanwhile, here is the built-in answer:',
+    suggestedQ1: 'What is the Charleston?',
+    suggestedQ2: 'When can I call a discard?',
+    suggestedQ3: 'Joker rules?',
+    suggestedQ4: 'How is scoring paid?',
+
+    // shop
+    shopTitle: 'Mahjong Shop',
+    shopHint: 'Tiles, cards and accessories from our Shopify store.',
+    visitStore: 'Visit Store',
+
+    // paywall
+    paywallTitle: 'Free trial over',
+    paywallBody: 'You have played {n} free games. Unlock unlimited play, all future cards and the Rules AI.',
+    paywallUnlock: 'Unlock — {stars} Telegram Stars',
+    paywallOpenTg: 'Open in Telegram to unlock',
+    paywallWebNote: 'Payments run inside Telegram (Stars). Open our bot, unlock once, play anywhere.',
+    gamesLeft: 'Free games left: {n}',
+
+    // bots
+    bot1: 'Joy',
+    bot2: 'Mei',
+    bot3: 'Lily',
+  },
+  zh: {
+    title: 'JYB 麻将',
+    subtitle: '在线美式麻将 — NMJL 2025 规则卡',
+    navPlay: '开局',
+    navCard: '2025 牌型卡',
+    navRules: '规则 AI',
+    navShop: '商城',
+    newGame: '新一局',
+    langBtn: 'EN',
+
+    you: '你',
+    east: '庄家',
+    wallLeft: '牌墙',
+    yourTurnPick: '轮到你 — 点击「摸牌」',
+    yourTurnDiscard: '轮到你 — 点击一张牌打出',
+    pick: '摸牌',
+    discard: '打出',
+    mahjong: '胡牌！',
+    pung: '碰',
+    kong: '杠',
+    quint: '五同',
+    pass: '过',
+    callPrompt: '要叫这张牌吗？',
+    selfPickAvailable: '你可以宣布胡牌！',
+    swapJokerHint: '点击亮牌中的百搭可换出',
+
+    charleston: '查尔斯顿',
+    charlestonPass: '传 3 张牌',
+    dirR: '传给右手',
+    dirA: '传给对面',
+    dirL: '传给左手',
+    selectTiles: '选择 {n} 张牌',
+    confirmPass: '确认传出',
+    blindPass: '盲传',
+    secondCharlestonQ: '再来一轮查尔斯顿？',
+    voteYes: '继续',
+    voteNo: '停止',
+    waiting: '等待其他玩家…',
+    courtesy: '礼节性换牌',
+    courtesyHint: '与对面玩家交换 0–3 张牌',
+
+    winTitle: '胡牌！',
+    wallGame: '流局 — 无人获胜',
+    selfPick: '自摸',
+    discardWin: '点炮',
+    jokerless: '无百搭 — 翻倍！',
+    handLabel: '胡牌牌型',
+    value: '分值',
+    score: '积分',
+    nextGame: '下一局',
+
+    logStart: '开局，{seat} 做庄。',
+    logPass: '查尔斯顿：{dir}',
+    logSecond: '第二轮查尔斯顿开始',
+    logCourtesy: '礼节性换牌完成',
+    logTurn: '轮到 {seat}',
+    logPick: '{seat} 摸牌',
+    logDiscard: '{seat} 打出 {tile}',
+    logPung: '{seat} 碰 {tile}',
+    logKong: '{seat} 杠 {tile}',
+    logQuint: '{seat} 五同 {tile}',
+    logMahjong: '{seat} 用 {tile} 胡牌（{hand}）！',
+    logMahjongSelf: '{seat} 自摸胡牌（{hand}）！',
+    logSwap: '{seat} 用 {tile} 换回百搭',
+    logWall: '牌墙摸完 — 流局',
+
+    cardTitle: 'NMJL 2025 牌型卡',
+    cardHint: '本年度所有合法胡牌牌型。X = 可亮牌，C = 必须门清。数字为分值。',
+    concealed: '门清',
+    exposed: '可亮',
+
+    rulesTitle: '规则 AI 问答',
+    rulesHint: '美式麻将规则、2025 牌型卡、实战策略，随便问。',
+    rulesPlaceholder: '例如：对子里能用百搭吗？',
+    send: '发送',
+    thinking: '思考中…',
+    rulesOffline: 'AI 服务尚未配置，以下是内置答案：',
+    suggestedQ1: '什么是查尔斯顿？',
+    suggestedQ2: '什么时候可以叫牌？',
+    suggestedQ3: '百搭的规则？',
+    suggestedQ4: '分数怎么算？',
+
+    shopTitle: '麻将商城',
+    shopHint: '来自我们 Shopify 店铺的牌具、规则卡与配件。',
+    visitStore: '进入店铺',
+
+    paywallTitle: '免费试玩已结束',
+    paywallBody: '你已体验 {n} 局免费游戏。解锁无限对局、未来牌型卡更新与规则 AI。',
+    paywallUnlock: '解锁 — {stars} Telegram Stars',
+    paywallOpenTg: '前往 Telegram 解锁',
+    paywallWebNote: '支付在 Telegram 内（Stars）完成。打开我们的机器人，解锁一次，到处可玩。',
+    gamesLeft: '剩余免费局数：{n}',
+
+    bot1: 'Joy',
+    bot2: 'Mei',
+    bot3: 'Lily',
+  },
+} as const;
+
+export type I18nKey = keyof typeof dict.en;
+
+export function t(lang: Lang, key: I18nKey, params?: Record<string, string | number>): string {
+  let s: string = dict[lang][key] ?? dict.en[key] ?? key;
+  if (params) for (const [k, v] of Object.entries(params)) s = s.replace(`{${k}}`, String(v));
+  return s;
+}
