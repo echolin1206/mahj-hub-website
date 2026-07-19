@@ -5,8 +5,8 @@
 // real tiles; remaining real tiles go to joker-allowed groups; the leftover
 // deficit must be covered by jokers in hand.
 
-import { CARD } from './card2025';
-import type { CardHand } from './card2025';
+import { CARD } from './cardIlm';
+import type { CardHand } from './cardIlm';
 import { JOKER, countBy } from './tiles';
 import type { TileKey } from './tiles';
 

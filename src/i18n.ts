@@ -28,6 +28,10 @@ const dict = {
     callPrompt: 'Call the discard?',
     selfPickAvailable: 'You can declare Mah Jongg!',
     swapJokerHint: 'Tap a joker in an exposure to swap',
+    yourDiscards: 'Your discards',
+    hintTitle: 'Closest hands — tiles you need',
+    hintMissing: '{n} away',
+    hintDone: 'ready to call Mah Jongg!',
 
     // charleston
     charleston: 'Charleston',
@@ -80,7 +84,7 @@ const dict = {
 
     // rules chat
     rulesTitle: 'Ask the Rules AI',
-    rulesHint: 'American mahjong rules, the 2025 card, strategy — ask anything.',
+    rulesHint: 'American mahjong rules, the I Love Mahj card, strategy — ask anything.',
     rulesPlaceholder: 'e.g. Can I use a joker in a pair?',
     send: 'Send',
     thinking: 'Thinking…',
@@ -133,6 +137,10 @@ const dict = {
     callPrompt: '要叫这张牌吗？',
     selfPickAvailable: '你可以宣布胡牌！',
     swapJokerHint: '点击亮牌中的百搭可换出',
+    yourDiscards: '你的出牌',
+    hintTitle: '最接近的牌型 — 还需要的牌',
+    hintMissing: '还差 {n} 张',
+    hintDone: '可以叫胡了！',
 
     charleston: '查尔斯顿',
     charlestonPass: '传 3 张牌',

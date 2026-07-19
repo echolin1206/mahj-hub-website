@@ -72,9 +72,16 @@ export const useStore = create<Store>((set, get) => {
     tick: 0,
     newGame: () => {
       const { unlocked, gamesPlayed, engine: old } = get();
-      if (!unlocked && gamesPlayed >= FREE_GAMES) {
-        set({ paywallOpen: true });
-        return;
+      if (!unlocked) {
+        // a free game is consumed when the round STARTS (not when it ends),
+        // so quitting mid-game still counts
+        if (gamesPlayed >= FREE_GAMES) {
+          set({ paywallOpen: true });
+          return;
+        }
+        const n = gamesPlayed + 1;
+        localStorage.setItem(LS_PLAYED, String(n));
+        set({ gamesPlayed: n });
       }
       const scores = old ? old.state.players.map((p) => p.score) : [0, 0, 0, 0];
       const dealer = old ? (old.state.dealer + 1) % 4 : 0;
@@ -163,17 +170,11 @@ export function scheduleBots() {
     }, delay);
   };
 
-  // count finished games once (trial + auto-open paywall)
+  // game over: if the free quota is used up, open the paywall
   if (gs.phase === 'over') {
-    const played = useStore.getState().gamesPlayed;
-    const key = `played_${gs.log[0]?.id ?? 0}_${played}`;
-    if (!(window as unknown as Record<string, boolean>)[key]) {
-      (window as unknown as Record<string, boolean>)[key] = true;
-      const n = played + 1;
-      localStorage.setItem(LS_PLAYED, String(n));
-      const st = useStore.getState();
-      useStore.setState({ gamesPlayed: n });
-      if (!st.unlocked && n >= FREE_GAMES) useStore.setState({ paywallOpen: true });
+    const st = useStore.getState();
+    if (!st.unlocked && st.gamesPlayed >= FREE_GAMES && !st.paywallOpen) {
+      useStore.setState({ paywallOpen: true });
     }
     return;
   }

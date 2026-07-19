@@ -37,8 +37,8 @@ const FAQ: { keys: string[]; en: string; zh: string }[] = [
   },
   {
     keys: ['flower', '花'],
-    en: 'Flowers are suitless bonus tiles used by many hands on the card as pairs, pungs or kongs. They can never be used as a number tile, and on the 2025 card there is no hand with a single flower — so a lone flower is usually a safe-ish early discard.',
-    zh: '花牌不属于任何花色，许多牌型需要花牌的对子、碰或杠。花牌不能当数字牌用。2025 卡上没有需要单张花牌的牌型，所以单张花牌通常可以较早安全打出。',
+    en: 'Flowers are suitless bonus tiles used by many hands on the card as pairs, pungs, kongs or even quints. They can never be used as a number tile, and on the I Love Mahj card there is no hand with a single flower — so a lone flower is usually a safe-ish early discard.',
+    zh: '花牌不属于任何花色，许多牌型需要花牌的对子、碰、杠甚至五同。花牌不能当数字牌用。I Love Mahj 卡上没有需要单张花牌的牌型，所以单张花牌通常可以较早安全打出。',
   },
 ];
 

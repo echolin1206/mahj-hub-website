@@ -5,7 +5,7 @@ import { JOKER, buildWall, sortTiles } from './tiles';
 import type { TileKey } from './tiles';
 import { matchWin, callableMelds, buildMeld } from './match';
 import type { Meld } from './match';
-import type { CardHand } from './card2025';
+import type { CardHand } from './cardIlm';
 
 export type Phase =
   | 'charleston-pass'

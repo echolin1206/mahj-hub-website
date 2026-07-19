@@ -1,7 +1,7 @@
 import { useStore } from '../state/store';
 import { t } from '../i18n';
-import { cardLines, SECTIONS } from '../game/card2025';
-import type { SectionId } from '../game/card2025';
+import { cardLines, SECTIONS } from '../game/cardIlm';
+import type { SectionId } from '../game/cardIlm';
 import { TileFace } from '../components/TileFace';
 import { Badge } from '@/components/ui/badge';
 

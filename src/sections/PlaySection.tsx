@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useStore, scheduleBots, humanCallPending, canHumanActDiscard, canHumanPick } from '../state/store';
 import { TileFace, TileBack } from '../components/TileFace';
 import { t } from '../i18n';
-import { matchWin } from '../game/match';
+import { matchWin, evaluate } from '../game/match';
 import { JOKER } from '../game/tiles';
 import type { TileKey } from '../game/tiles';
 import { Button } from '@/components/ui/button';
@@ -126,7 +126,14 @@ export default function PlaySection() {
     const pl = gs.players[0];
     if (canHumanActDiscard(gs) && pl.hand.length % 3 === 2) return matchWin(pl.hand, pl.melds);
     return null;
-  }, [gs, engine]);
+    // engine mutates state in place — must depend on tick to recompute
+  }, [gs, engine, tick]);
+
+  // win hints: closest card hands + the tiles still needed
+  const hints = useMemo(() => {
+    if (!gs || gs.phase === 'over') return [];
+    return evaluate(gs.players[0].hand, gs.players[0].melds, 3);
+  }, [gs, tick]);
 
   if (!engine || !gs) {
     return (
@@ -253,6 +260,17 @@ export default function PlaySection() {
                 />
               ))}
             </div>
+            {/* own discards */}
+            {me.discards.length > 0 && (
+              <div className="mt-2">
+                <div className="text-white/50 text-[10px] mb-[2px]">{t(lang, 'yourDiscards')}</div>
+                <div className="flex gap-[2px] flex-wrap">
+                  {me.discards.map((tile, i) => (
+                    <TileFace key={i} tile={tile} size="xs" dim={i < me.discards.length - 1} />
+                  ))}
+                </div>
+              </div>
+            )}
             {/* action bar */}
             <div className="flex items-center gap-2 mt-2 flex-wrap min-h-[40px]">
               {charlestonMe && (
@@ -343,6 +361,32 @@ export default function PlaySection() {
             ))}
           </div>
         </div>
+        {/* win hints */}
+        {hints.length > 0 && (
+          <div className="rounded-xl bg-[#12301f] border border-amber-400/30 p-3">
+            <div className="text-amber-200 text-xs font-bold mb-2">{t(lang, 'hintTitle')}</div>
+            <div className="space-y-2">
+              {hints.map((h, i) => (
+                <div key={`${h.hand.id}-${i}`} className={i > 0 ? 'opacity-70' : ''}>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-white/90 font-semibold">{h.hand.id} · {h.hand.value}pt</span>
+                    <span className={h.missing === 0 ? 'text-yellow-300 font-bold' : 'text-emerald-300'}>
+                      {h.missing === 0 ? t(lang, 'hintDone') : t(lang, 'hintMissing', { n: h.missing })}
+                    </span>
+                  </div>
+                  <div className="text-white/45 text-[10px] leading-tight">{lang === 'zh' ? h.hand.noteZh : h.hand.noteEn}</div>
+                  {h.missing > 0 && h.needed.length > 0 && (
+                    <div className="flex gap-[2px] mt-1 flex-wrap">
+                      {[...new Set(h.needed)].slice(0, 8).map((tile) => (
+                        <TileFace key={tile} tile={tile} size="xs" />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         <div className="rounded-xl bg-[#12301f] border border-white/10 p-3 flex-1 min-h-[200px] max-h-[420px] overflow-y-auto">
           <div className="space-y-1 text-xs text-white/70 flex flex-col-reverse">
             {[...gs.log].reverse().map((ev) => (

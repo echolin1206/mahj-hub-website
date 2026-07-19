@@ -10,10 +10,10 @@ function keepSet(hand: TileKey[], melds: Meld[], _topN = 3): Set<TileKey> {
   const keep = new Set<TileKey>();
   if (evals.length === 0) return keep;
   const best = evals[0];
-  const focus = best.missing <= 4 ? [best] : evals.slice(0, 2); // commit early
+  const focus = best.missing <= 5 ? [best] : evals.slice(0, 2); // commit early
   for (const ev of focus) for (const grp of ev.hand.groups) for (const t of grp.tiles) keep.add(t);
   // never ditch jokers/flowers while far away
-  if (best.missing > 4) {
+  if (best.missing > 5) {
     keep.add('flower');
   }
   return keep;
@@ -76,7 +76,7 @@ export function decideCall(hand: TileKey[], melds: Meld[], tile: TileKey): CallD
   if (!before || before.hand.concealed) return 'pass';
   // direct hit: the tile completes a same-tile group of the target hand —
   // only expose when we're already close (early exposures lock the hand)
-  if (before.missing <= 4) {
+  if (before.missing <= 5) {
     for (const grp of before.hand.groups) {
       if (!grp.jokerOk) continue;
       if (grp.tiles[0] !== tile || !grp.tiles.every((x) => x === tile)) continue;
