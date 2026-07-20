@@ -5,7 +5,7 @@ import { Hono } from "hono";
 import { z } from "zod";
 import crypto from "node:crypto";
 import { eq } from "drizzle-orm";
-import { getDb } from "./db";
+import { getDb } from "./db.js";
 import { entitlements } from "../db/schema";
 
 const STAR_PRICE = () => parseInt(process.env.STAR_PRICE || "150", 10);
