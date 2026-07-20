@@ -1,5 +1,5 @@
 import { handle } from "hono/vercel";
-import { app } from "../server/routes";
+import { app } from "../server/routes.js";
 
 export const config = { runtime: "nodejs" };
 
