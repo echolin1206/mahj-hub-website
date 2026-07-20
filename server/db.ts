@@ -2,7 +2,7 @@
 // serverless functions (no persistent TCP pool).
 import { drizzle } from "drizzle-orm/vercel-postgres";
 import { sql } from "@vercel/postgres";
-import * as schema from "../db/schema";
+import * as schema from "../db/schema.js";
 
 function createDb() {
   return drizzle(sql, { schema });
