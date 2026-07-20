@@ -6,7 +6,7 @@ import { z } from "zod";
 import crypto from "node:crypto";
 import { eq } from "drizzle-orm";
 import { getDb } from "./db.js";
-import { entitlements } from "../db/schema";
+import { entitlements } from "../db/schema.js";
 
 const STAR_PRICE = () => parseInt(process.env.STAR_PRICE || "150", 10);
 const BOT_TOKEN = () => process.env.TELEGRAM_BOT_TOKEN || "";
